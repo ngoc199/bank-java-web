@@ -2,6 +2,8 @@ package com.bank.services;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import com.bank.entities.Customer;
 import com.bank.repositories.CustomerRepository;
 
@@ -15,13 +17,12 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    /**
-     * Find all customers in the databases
-     * 
-     * @return listCustomers
-     */
     public List<Customer> findAllCustomers() {
         return customerRepository.findAll();
+    }
+
+    public List<Customer> findCustomersByName(String name) {
+        return customerRepository.findByNameContains(name);
     }
 
     /**
@@ -34,23 +35,9 @@ public class CustomerService {
         return customerRepository.findById(id).get();
     }
 
-    /**
-     * Save customer to the database
-     * 
-     * @param customer
-     * @return customer
-     */
+    @Transactional(rollbackOn = Exception.class)
     public Customer saveCustomer(Customer customer) {
         return customerRepository.save(customer);
-    }
-
-    /**
-     * Delete customer by id
-     * 
-     * @param id
-     */
-    public void deleteCustomerById(long id) {
-        customerRepository.deleteById(id);
     }
 
 }

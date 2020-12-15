@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+
+<body>
+    <h1 class="text-center">Login</h1>
+    <span class="error" th:text="${param.err}"></span>
+    <form th:action="@{/login}" method="POST">
+        <div class="form-control">
+            <p><strong>Username:</strong></p>
+            <input type="text" name="username" />
+        </div>
+        <div class="form-control">
+            <p><strong>Password:</strong></p>
+            <input type="password" name="password" />
+        </div>
+        <div class="form-control">
+            <button type="submit">Login</button>
+        </div>
+    </form>
+</body>
+
+</html>

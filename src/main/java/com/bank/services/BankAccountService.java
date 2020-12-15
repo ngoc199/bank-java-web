@@ -3,8 +3,9 @@ package com.bank.services;
 import java.util.List;
 import java.util.UUID;
 
+import javax.transaction.Transactional;
+
 import com.bank.entities.BankAccount;
-import com.bank.entities.Customer;
 import com.bank.repositories.BankAccountRepository;
 
 import org.springframework.stereotype.Service;
@@ -26,34 +27,8 @@ public class BankAccountService {
         return bankAccountRepository.findAll();
     }
 
-    /**
-     * Find bank account by id
-     * 
-     * @param id
-     * @return bankAccount
-     */
     public BankAccount findBankAccountById(UUID id) {
-        return bankAccountRepository.findById(id).get();
-    }
-
-    /**
-     * Find customer's bank accounts
-     * 
-     * @param customer
-     * @return listBankAccounts
-     */
-    public List<BankAccount> findBankAccountsByCustomer(Customer customer) {
-        return bankAccountRepository.findByCustomer(customer);
-    }
-
-    /**
-     * Save bank account to the database
-     * 
-     * @param bankAccount
-     * @return bankAccount
-     */
-    public BankAccount saveBankAccount(BankAccount bankAccount) {
-        return bankAccountRepository.save(bankAccount);
+        return bankAccountRepository.findById(id).orElse(null);
     }
 
     /**
@@ -61,6 +36,7 @@ public class BankAccountService {
      * 
      * @param id
      */
+    @Transactional(rollbackOn = Exception.class)
     public void deleteBankAccountById(UUID id) {
         bankAccountRepository.deleteById(id);
     }

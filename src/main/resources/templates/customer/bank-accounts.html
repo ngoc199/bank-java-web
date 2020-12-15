@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Accounts</title>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div th:replace="index :: navbar"></div>
+
+    <!-- Customer Bank Accounts -->
+    <h1 th:text="${session.customer.name + ' bank accounts'}"></h1>
+
+    <h2>Saving Accounts</h2>
+    <table>
+        <tr>
+            <th>Account ID</th>
+            <th>Balance</th>
+            <th>Interest</th>
+            <th>Maintainance Fee</th>
+        </tr>
+        <tr th:each="account : ${savingAccounts}">
+            <td th:text="${account.accountId}"></td>
+            <td th:text="${account.balance}"></td>
+            <td th:text="${account.interest + '%'}"></td>
+            <td th:text="${account.maintenanceFee}"></td>
+        </tr>
+    </table>
+
+    <h2>Credit Accounts</h2>
+    <table>
+        <tr>
+            <th>Account ID</th>
+            <th>Balance</th>
+            <th>Borrow Limit</th>
+        </tr>
+        <tr th:each="account : ${creditAccounts}">
+            <td th:text="${account.accountId}"></td>
+            <td th:text="${account.balance}"></td>
+            <td th:text="${account.borrow}"></td>
+        </tr>
+    </table>
+</body>
+
+</html>

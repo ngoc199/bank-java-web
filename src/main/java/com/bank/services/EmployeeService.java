@@ -2,6 +2,8 @@ package com.bank.services;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import com.bank.entities.Employee;
 import com.bank.repositories.EmployeeRepository;
 
@@ -15,11 +17,6 @@ public class EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
-    /**
-     * Find all employees in the database
-     * 
-     * @return
-     */
     public List<Employee> findAllEmployees() {
         return employeeRepository.findAll();
     }
@@ -40,16 +37,9 @@ public class EmployeeService {
      * @param employee
      * @return employee
      */
+    @Transactional(rollbackOn = Exception.class)
     public Employee saveEmployee(Employee employee) {
         return employeeRepository.save(employee);
     }
 
-    /**
-     * Delete employee by id
-     * 
-     * @param id
-     */
-    public void deleteEmployeeById(long id) {
-        employeeRepository.deleteById(id);
-    }
 }

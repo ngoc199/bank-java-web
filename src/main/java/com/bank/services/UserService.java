@@ -2,8 +2,10 @@ package com.bank.services;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import com.bank.entities.User;
-import com.bank.payroll.UserNotFoundException;
+import com.bank.exceptions.UserNotFoundException;
 import com.bank.repositories.UserRepository;
 
 import org.springframework.stereotype.Service;
@@ -26,35 +28,11 @@ public class UserService {
     }
 
     /**
-     * Find user by id
-     * 
-     * @param id
-     * @return user
-     */
-    public User findUserById(long id) {
-        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
-    }
-
-    /**
-     * Save user to the database
-     * 
-     * @param user
-     * @return user
-     */
-    public User saveUser(User user) {
-        return userRepository.save(user);
-    }
-
-    public User updateUser(long id, User updatedUser) {
-        updatedUser.setId(id);
-        return userRepository.save(updatedUser);
-    }
-
-    /**
      * Delete user by id
      * 
      * @param id
      */
+    @Transactional(rollbackOn = Exception.class)
     public void deleteUserById(long id) {
         userRepository.deleteById(id);
     }
@@ -66,8 +44,12 @@ public class UserService {
      * @param password
      * @return validateResult
      */
-    public boolean isValidatedUser(String username, String password) {
-        User user = userRepository.findByUsername(username).get();
-        return user.getPassword().equals(password);
+    public User validateUser(String username, String password) {
+        return userRepository.findByUsername(username).map(user -> {
+            if (user.getPassword().equals(password)) {
+                return user;
+            }
+            return null;
+        }).orElse(null);
     }
 }

@@ -55,6 +55,10 @@ public class User {
     @NotBlank(message = "Address cannot be blanked")
     private String address;
 
+    @NotBlank
+    @NotNull
+    private UserRole role = UserRole.CUSTOMER;
+
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createAt;

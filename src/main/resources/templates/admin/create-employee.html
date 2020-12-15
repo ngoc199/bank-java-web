@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create new employee</title>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div th:replace="index :: navbar"></div>
+
+    <!-- Employee form -->
+    <h1 class="text-center">Create new employee</h1>
+    <form th:action="@{/admin/create-employee}" method="post" th:object="${newEmployee}">
+        <div class="form-control">
+            <p><strong>Username</strong></p>
+            <input type="text" th:field="*{username}">
+        </div>
+        <div class="form-control">
+            <p><strong>Name</strong></p>
+            <input type="text" th:field="*{name}">
+        </div>
+        <div class="form-control">
+            <p><strong>Password</strong></p>
+            <input type="password" th:field="*{password}">
+        </div>
+        <div class="form-control">
+            <p><strong>ID Number</strong></p>
+            <input type="text" th:field="*{idNumber}">
+        </div>
+        <div class="form-control">
+            <p><strong>Date of Birth</strong></p>
+            <input type="date" th:field="*{dateOfBirth}">
+        </div>
+        <div class="form-control">
+            <p><strong>Address</strong></p>
+            <input type="text" th:field="*{address}">
+        </div>
+        <div class="form-control">
+            <p><strong>Level</strong></p>
+            <input type="number" th:field="*{level}">
+        </div>
+        <div class="form-control">
+            <p><strong>Year of Experience</strong></p>
+            <input type="number" th:field="*{yearOfExperience}">
+        </div>
+        <div class="form-control">
+            <p><strong>Department</strong></p>
+            <select th:field="*{department}">
+                <option value="SALE">Sale</option>
+                <option value="DIRECTOR">Director</option>
+                <option value="RECEPTIONIST">Receptionist</option>
+                <option value="SECURITY">Security</option>
+                <option value="ACCOUNTANT">Accountant</option>
+            </select>
+        </div>
+        <div class="form-control">
+            <p><strong>Base Salary</strong></p>
+            <input type="number" th:field="*{baseSalary}">
+        </div>
+        <div class="form-control">
+            <button type="submit">Create</button>
+        </div>
+
+    </form>
+</body>
+
+</html>

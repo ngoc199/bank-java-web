@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All users</title>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div th:replace="index :: navbar"></div>
+
+    <!-- All users -->
+    <h1 class="text-center">All Users</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>ID Number</th>
+            <th>Date of Birth</th>
+            <th>Address</th>
+            <th>Link</th>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.idNumber}"></td>
+            <td th:text="${user.dateOfBirth}"></td>
+            <td th:text="${user.address}"></td>
+            <td><a th:href="@{'/users' + user.id}"></a></td>
+        </tr>
+    </table>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        var username = /*[[${session.user.name}]]*/ 'Sebastian';
+
+        /*]]>*/
+    </script>
+
+</body>
+
+</html>

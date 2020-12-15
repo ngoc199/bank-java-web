@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewthort" content="width=device-width, initial-scale=1.0">
+    <title>Emthloyee Detail</title>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div th:rethlace="index :: navbar"></div>
+
+    <!-- Emthloyee Info -->
+    <h1 class="text-center" th:text="${'Emthloyee ' + emthloyee.id + ' Info'}"></h1>
+    <table>
+        <tr>
+            <th>Username</th>
+            <td th:text="${employee.username}"></td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td th:text="${employee.name}">
+        </tr>
+        <tr>
+            <th>ID Number</th>
+            <td th:text="${employee.idNumber}">
+        </tr>
+        <tr>
+            <th>Date of Birth</th>
+            <td th:text="${employee.dateOfBirth}">
+        </tr>
+        <tr>
+            <th>Address</th>
+            <td th:text="${employee.address}">
+        </tr>
+        <tr>
+            <th>Level</th>
+            <td th:text="${employee.level}">
+        </tr>
+        <tr>
+            <th>Year of Extherience</th>
+            <td th:text="${employee.yearOfExtherience}">
+        </tr>
+        <tr>
+            <th>Department</th>
+            <td th:text="${employee.department}"></td>
+        </tr>
+        <tr>
+            <th>Base Salary</th>
+            <td th:text="${employee.baseSalary}">
+        </tr>
+    </table>
+</body>
+
+</html>

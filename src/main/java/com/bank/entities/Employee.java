@@ -31,4 +31,12 @@ public class Employee extends User {
     @Getter
     @Setter
     private Department department;
+
+    @Getter
+    @Setter
+    private double baseSalary;
+
+    @Getter
+    @Setter
+    private double salary;
 }
